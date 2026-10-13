@@ -1,23 +1,27 @@
 ---
 title: smolagents-news-search-tool
-emoji: ⚡
-colorFrom: pink
-colorTo: yellow
+emoji: 📰
+colorFrom: indigo
+colorTo: blue
 sdk: gradio
 sdk_version: 5.23.1
 app_file: app.py
 pinned: false
-tags:
-- smolagents
-- agent
-- smolagent
-- tool
-- agent-course
+tags: [smolagents, agent, smolagent, tool, agent-course, news-search, gemini]
+short_description: Prototype Gemini-powered smolagent with custom news_search tool
 ---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+# 📰 smolagents-news-search-tool
 
-# AI News Agent (Prototype)
+<p align="center">
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white" alt="Python"></a>
+  <a href="https://github.com/huggingface/smolagents"><img src="https://img.shields.io/badge/smolagents-1.13.0-yellow?logo=huggingface&logoColor=white" alt="smolagents"></a>
+  <a href="https://aistudio.google.com/"><img src="https://img.shields.io/badge/Google_Gemini-2.5_Flash-4285F4?logo=google&logoColor=white" alt="Google Gemini"></a>
+  <a href="https://gradio.app/"><img src="https://img.shields.io/badge/UI-Gradio_5-orange?logo=gradio&logoColor=white" alt="Gradio"></a>
+  <a href="https://huggingface.co/learn/agents-course"><img src="https://img.shields.io/badge/HF_Course-Agents-yellow?logo=huggingface&logoColor=white" alt="HF Course"></a>
+</p>
+
+---
 
 A prototype AI agent powered by Google Gemini and Hugging Face's [`smolagents`](https://github.com/huggingface/smolagents), based on the template from the **[Hugging Face Agents Course](https://huggingface.co/learn/agents-course)**.
 
