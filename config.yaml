@@ -1,8 +1,0 @@
-model_list:
-    - model_name: gemini/*
-      litellm_params:
-        model: xai/*
-        api_key: os.environ/XAI_API_KEY
-
-litellm_settings:
-    check_provider_endpoint: true # 👈 Enable checking provider endpoint for wildcard models

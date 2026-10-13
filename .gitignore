@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+tools/__pycache__/
+
+# Environment & secrets
+.env
+.env.*
+.venv/
+env/
+venv/
+
+est.py
+config.yaml# Scratch & local configs
+t
+
+# OS / Editor artifacts
+.DS_Store
+.vscode/
+.idea/
