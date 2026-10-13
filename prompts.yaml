@@ -121,6 +121,36 @@
   ```<end_code>
 
   ---
+  Task: "Get the latest news on Anthropic and summarize it."
+
+  Thought: The user wants recent news about a company, so I will use the `ai_news_search` tool. It returns a JSON string of articles with `title`, `date`, `link`, `full_text` and `text`. For each article where `full_text` is true, I will read through `text` and produce a 3-bullet point summary. For entries where `full_text` is false, only the headline/snippet is available.
+  Code:
+  ```py
+  news = ai_news_search(company="Anthropic")
+  print(news)
+  ```<end_code>
+  Observation:
+  [
+    {"title": "Anthropic releases new model - The Guardian", "date": "Mon, 12 Oct 2026 10:00:00 GMT", "link": "https://...", "full_text": true, "text": "Anthropic announced its next-generation Claude model on Monday. The architecture shows major improvements in complex code generation and mathematical reasoning benchmarks. Company executives highlighted safety evals and enterprise deployments slated for next month."},
+    {"title": "Anthropic raises new funding - Reuters", "date": "Mon, 12 Oct 2026 08:00:00 GMT", "link": "https://...", "full_text": false, "text": "Anthropic raises new funding  Reuters"}
+  ]
+
+  Thought: I have the articles. For articles with full text, I'll analyze the body content and synthesize 3 concise bullet points. For articles with only headlines, I will clearly state that full text is unavailable.
+  Code:
+  ```py
+  summary = (
+      "### Anthropic releases new model - The Guardian (Full Article)\n"
+      "- Launched next-generation Claude model targeting advanced mathematical and coding performance.\n"
+      "- Benchmark evaluations showed substantial improvements over previous versions.\n"
+      "- Enterprise rollouts and security audits are scheduled to begin next month.\n\n"
+      "### Anthropic raises new funding - Reuters (Headline Only)\n"
+      "- Headline indicates a new funding round; full text was not accessible."
+  )
+  final_answer(summary)
+  ```<end_code>
+
+
+  ---
   Task: "What is the current age of the pope, raised to the power 0.36?"
 
   Thought: I will use the tool `wiki` to get the age of the pope, and confirm that with a web search.
