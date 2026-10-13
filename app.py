@@ -1,12 +1,17 @@
-from smolagents import CodeAgent,DuckDuckGoSearchTool, HfApiModel,load_tool,tool
+from smolagents import CodeAgent,DuckDuckGoSearchTool, LiteLLMModel,load_tool,tool
 import datetime
 import requests
 import pytz
 import yaml
+import os
 from tools.final_answer import FinalAnswerTool
-
+from tools.web_search import DuckDuckGoSearchTool
+from tools.visit_webpage import VisitWebpageTool
+from tools.news_search import NewsSearchTool
+from dotenv import load_dotenv
 from Gradio_UI import GradioUI
 
+load_dotenv()
 # Below is an example of a tool that does nothing. Amaze us with your creativity !
 @tool
 def my_custom_tool(arg1:str, arg2:int)-> str: #it's import to specify the return type
@@ -33,17 +38,20 @@ def get_current_time_in_timezone(timezone: str) -> str:
     except Exception as e:
         return f"Error fetching time for timezone '{timezone}': {str(e)}"
 
-
+#instantiate tool classes
 final_answer = FinalAnswerTool()
+web_search = DuckDuckGoSearchTool()
+visit_page = VisitWebpageTool()
+news_search = NewsSearchTool()
 
 # If the agent does not answer, the model is overloaded, please use another model or the following Hugging Face Endpoint that also contains qwen2.5 coder:
 # model_id='https://pflgm2locj2t89co.us-east-1.aws.endpoints.huggingface.cloud' 
 
-model = HfApiModel(
-max_tokens=2096,
-temperature=0.5,
-model_id='Qwen/Qwen2.5-Coder-32B-Instruct',# it is possible that this model may be overloaded
-custom_role_conversions=None,
+model = LiteLLMModel(
+    model_id="gemini/gemini-3.5-flash-lite",
+    api_key=os.environ["GEMINI_KEY"],
+    max_tokens=4096,
+    temperature=0.5,
 )
 
 
@@ -55,7 +63,7 @@ with open("prompts.yaml", 'r') as stream:
     
 agent = CodeAgent(
     model=model,
-    tools=[final_answer], ## add your tools here (don't remove final answer)
+    tools=[final_answer, visit_page, news_search], ## add your tools here (don't remove final answer)
     max_steps=6,
     verbosity_level=1,
     grammar=None,
