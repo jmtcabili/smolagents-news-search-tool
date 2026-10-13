@@ -1,16 +1,3 @@
----
-title: smolagents-news-search-tool
-emoji: 📰
-colorFrom: indigo
-colorTo: blue
-sdk: gradio
-sdk_version: 5.23.1
-app_file: app.py
-pinned: false
-tags: [smolagents, agent, smolagent, tool, agent-course, news-search, gemini]
-short_description: Prototype Gemini-powered smolagent with custom news_search tool
----
-
 # 📰 smolagents-news-search-tool
 
 <p align="center">
