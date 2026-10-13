@@ -1,5 +1,5 @@
 ---
-title: First Agent Template
+title: smolagents-news-search-tool
 emoji: ⚡
 colorFrom: pink
 colorTo: yellow
