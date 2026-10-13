@@ -4,6 +4,14 @@ import requests
 import markdownify
 import smolagents
 
+
+def truncate_content(content: str, max_length: int) -> str:
+    """Return content limited to max_length characters."""
+    if len(content) <= max_length:
+        return content
+    return content[:max_length] + "..."
+
+
 class VisitWebpageTool(Tool):
     name = "visit_webpage"
     description = "Visits a webpage at the given url and reads its content as a markdown string. Use this to browse webpages."
@@ -13,10 +21,9 @@ class VisitWebpageTool(Tool):
     def forward(self, url: str) -> str:
         try:
             import requests
+            import re
             from markdownify import markdownify
             from requests.exceptions import RequestException
-
-            from smolagents.utils import truncate_content
         except ImportError as e:
             raise ImportError(
                 "You must install packages `markdownify` and `requests` to run this tool: for instance run `pip install markdownify requests`."
